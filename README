@@ -1,0 +1,39 @@
+# Cheap NFT Marketplace
+
+## Description
+
+## Requirements
+
+
+
+## Auction Flow
+1. Owner of the NFT approves all NFT’s to the Marketplace
+2. Owner of the NFT signs to create an off-chain auction listing with a
+minimum price
+3. Bidder approves ERC20 tokens to Marketplace
+4. Bidder signs a bid for the auction
+5. If owner approves the bid, signs it back and retrieve to bidder
+6. Anyone with both signatures can settle the transaction, the owner takes the ERC20 whilst the bidder takes the NFT.
+
+## Implementation
+
+### Backend
+It is implemented using express.js, some endpoints are implemented
+
+- `GET  /auction/list`
+- `POST /auction/create`
+- `GET  /auction/:auctionId`
+- `GET  /auction/:auctionId/bid/list`
+- `POST /auction/:auctionId/bid/create`
+- `POST /auction/:auctionId/approve`
+
+### On Chain Smart Contract
+
+It is implemented using truffle to develop the smart contract
+
+
+## Deployment
+
+```
+$ forge create --rpc-url <your_rpc_url> --private-key <your_private_key> src/Marketplace.sol:Marketplace --broadcast
+```
