@@ -5,9 +5,9 @@ export class AuctionModel {
     private auctions: Record<string, Auction> = {};  // Auction ID -> Auction
     private bids: Record<string, Bid[]> = {};        // Auction ID -> Bids
 
-    createAuction(nftAddress: string, owner: string, minPrice: number, erc20Address: string) {
+    createAuction(nftAddress: string, nftTokenId: number, owner: string, minPrice: number, erc20Address: string) {
         const auctionId = uuidv4();
-        const auction: Auction = {id: auctionId, nftAddress, owner, minPrice , erc20Address, approvedBidId: null};
+        const auction: Auction = {id: auctionId, nftAddress, nftTokenId, owner, minPrice , erc20Address, approvedBidId: null};
         this.auctions[auctionId] = auction;
         return auction;
     }
@@ -38,13 +38,15 @@ export class AuctionModel {
         return bids.find(bid => bid.id == bidId)
     }
 
-    approveBid(auctionId: string, bidId: string) {
+    approveBid(auctionId: string, bidId: string, ownerSignature: string) {
         if (!this.auctions[auctionId]) return null
         const auction = this.auctions[auctionId];
         const bid = this.getBid(auctionId, bidId)
         if (!bid) return null
         if (auction && auction.approvedBidId === null) {
             auction.approvedBidId = bidId;
+            auction.ownerSignature = ownerSignature;
+            auction.bidderSignature = bid.signature;
             return auction;
         }
         return null;
