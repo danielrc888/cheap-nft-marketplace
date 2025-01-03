@@ -130,10 +130,40 @@ We used 3 wallets
 
 ![image](https://github.com/user-attachments/assets/9f2afead-7afe-467e-85ef-2082aac4d807)
 
+![image](https://github.com/user-attachments/assets/e244f18f-6e9a-471a-9660-480bcb2b5283)
 
-2. NFT Owner approves all NFT's to the Marketplace
+2. Mint an NFT to the NFT Owner
 
-3. Bidder approves ERC20 tokens to the Marketplace
+   ```
+    forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
+    ```
+![image](https://github.com/user-attachments/assets/b378a971-fba7-46f8-8eda-0530ce24caca)
+
+3. Transfer ERC20 to the bidder
+
+    ```
+    forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
+    ```
+
+![image](https://github.com/user-attachments/assets/af1b2bea-fe49-4aad-8b65-29e58c6e9441)
+
+
+3. NFT Owner approves all NFT's to the Marketplace
+
+    ```
+    forge script --chain sepolia script/Script.s.sol:ApproveNFTScript --rpc-url <your_rpc_url> --broadcast
+    ```
+
+![image](https://github.com/user-attachments/assets/b344ff96-dc41-4838-a736-ba6e060a4334)
+
+
+
+4. Bidder approves ERC20 tokens to the Marketplace
+
+    ```
+    forge script --chain sepolia script/Script.s.sol:ApproveERC20Script --rpc-url <your_rpc_url> --broadcast
+    ```
+![image](https://github.com/user-attachments/assets/1d5ef903-5b20-40ce-b1a2-bf2fbbacbfa4)
 
 
 
