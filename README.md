@@ -119,18 +119,23 @@ We used 3 wallets
 
 ### Smart Contract Deployments and Wallets Setup on Sepolia Testnet
 
-1. Deploy the 3 smart contract using following command:
+1. Deploy the 3 smart contract using following the script:
 
     ```
-    $ forge create --rpc-url <your_rpc_url> --private-key <your_private_key> src/Marketplace.sol:Marketplace --broadcast
+    forge script --chain sepolia script/Script.s.sol:DeployScript --rpc-url <your_rpc_url> --broadcast  --verify -vvvv
     ```
+![image](https://github.com/user-attachments/assets/3fcf662c-bdff-409c-a57a-c9a2dd16104f)
+
+![image](https://github.com/user-attachments/assets/a6a4b909-f82c-445b-8120-ca9243344ae8)
+
+![image](https://github.com/user-attachments/assets/9f2afead-7afe-467e-85ef-2082aac4d807)
+
 
 2. NFT Owner approves all NFT's to the Marketplace
 
 3. Bidder approves ERC20 tokens to the Marketplace
 
 
-### Screanshots
 
 ## Future Actions
 
