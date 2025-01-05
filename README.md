@@ -180,19 +180,19 @@ Note: This project uses node version 22.11.0 and foundry
 
 We used the following address to make the demo
 
-- Deployer: 0x87B06f8ecAeE3378a414aaD45Aa08F8a18003FD4
+- Deployer: [0x87B06f8ecAeE3378a414aaD45Aa08F8a18003FD4](https://sepolia.etherscan.io/address/0x87B06f8ecAeE3378a414aaD45Aa08F8a18003FD4)
 
-- Bidder: 0xA359eB575FB4Bf3815bcBf435a16bD5AD51b938a
+- Bidder: [0xA359eB575FB4Bf3815bcBf435a16bD5AD51b938a](https://sepolia.etherscan.io/address/0xA359eB575FB4Bf3815bcBf435a16bD5AD51b938a)
 
-- NFT Owner: 0x3BE0cA6E3c28Ff03EF63AAE512FE0B57B62ab34D
+- NFT Owner: [0x3BE0cA6E3c28Ff03EF63AAE512FE0B57B62ab34D](https://sepolia.etherscan.io/address/0x3BE0cA6E3c28Ff03EF63AAE512FE0B57B62ab34D)
 
 And this contracts were deployed resulted from demo
 
-- Marketplace: 0xD55b5f702aE1DF6a4991D11e42238e5577BB97df 
+- Marketplace: [0xD55b5f702aE1DF6a4991D11e42238e5577BB97df](https://sepolia.etherscan.io/address/0xD55b5f702aE1DF6a4991D11e42238e5577BB97df) 
 
-- ERC20 Token: 0xe51EFaD079B7c75Bd30210d21Fb286ca4556796E
+- ERC20 Token: [0xe51EFaD079B7c75Bd30210d21Fb286ca4556796E](https://sepolia.etherscan.io/address/0xe51EFaD079B7c75Bd30210d21Fb286ca4556796E)
 
-- ERC721 Token: 0xB00569a4817D84FBE713e72bb665b560f29a18F6
+- ERC721 Token: [0xB00569a4817D84FBE713e72bb665b560f29a18F6](https://sepolia.etherscan.io/address/0xB00569a4817D84FBE713e72bb665b560f29a18F6)
 
 
 The steps for this demo are described here:
@@ -203,11 +203,11 @@ The steps for this demo are described here:
     forge script --chain sepolia script/Script.s.sol:DeployScript --rpc-url <your_rpc_url> --broadcast  --verify -vvvv
     ```
 
-    Marketplace deploy tx hash: 0xe2db8bcd42cb3ea5cf9b0278f730c7ca36109b2e8487d3391d3eecee3bd5e1c7
+    Marketplace deploy tx hash: [0xe2db8bcd42cb3ea5cf9b0278f730c7ca36109b2e8487d3391d3eecee3bd5e1c7](https://sepolia.etherscan.io/tx/0xe2db8bcd42cb3ea5cf9b0278f730c7ca36109b2e8487d3391d3eecee3bd5e1c7)
 
-    ERC20 token deploy tx hash: 0xdd0a230837256d5f522fca96c9850c6f97e1815eaa72b727b1399ec39269a9ba
+    ERC20 token deploy tx hash: [0xdd0a230837256d5f522fca96c9850c6f97e1815eaa72b727b1399ec39269a9ba](https://sepolia.etherscan.io/tx/0xdd0a230837256d5f522fca96c9850c6f97e1815eaa72b727b1399ec39269a9ba)
 
-    NFT deploy tx hash: 0x493e8023574bc3841584b36ad8bebe648369009c44f203241196858b9bd0eccd
+    NFT deploy tx hash: [0x493e8023574bc3841584b36ad8bebe648369009c44f203241196858b9bd0eccd](https://sepolia.etherscan.io/tx/0x493e8023574bc3841584b36ad8bebe648369009c44f203241196858b9bd0eccd)
 
 
 2. Mint an NFT to the NFT Owner
@@ -216,7 +216,7 @@ The steps for this demo are described here:
     forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
 
-    Tx hash: 0xe36fa6c5e8d412ca3f5d9cde917fdff95e7c03952d2ecc5f61af5f85843616b7
+    Tx hash: [0xe36fa6c5e8d412ca3f5d9cde917fdff95e7c03952d2ecc5f61af5f85843616b7](https://sepolia.etherscan.io/tx/0xe36fa6c5e8d412ca3f5d9cde917fdff95e7c03952d2ecc5f61af5f85843616b7)
 
 3. Transfer ERC20 to the bidder
 
@@ -224,7 +224,7 @@ The steps for this demo are described here:
     forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
 
-    Tx hash: 0x9f0698615bc52198738a90355b8af33fb686b4eadb0aa49182557995c5ccd0db
+    Tx hash: [0x9f0698615bc52198738a90355b8af33fb686b4eadb0aa49182557995c5ccd0db](https://sepolia.etherscan.io/tx/0x9f0698615bc52198738a90355b8af33fb686b4eadb0aa49182557995c5ccd0db)
 
 3. NFT Owner approves all NFT's to the Marketplace
 
@@ -232,7 +232,7 @@ The steps for this demo are described here:
     forge script --chain sepolia script/Script.s.sol:ApproveNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
 
-    Tx hash: 0x89f6af1dcf0a9544cc13a6128a445de85304bcd2f99a9c73c0c4a013011ab93e
+    Tx hash: [0x89f6af1dcf0a9544cc13a6128a445de85304bcd2f99a9c73c0c4a013011ab93e](https://sepolia.etherscan.io/tx/0x89f6af1dcf0a9544cc13a6128a445de85304bcd2f99a9c73c0c4a013011ab93e)
 
 4. Bidder approves ERC20 tokens to the Marketplace
 
@@ -240,7 +240,15 @@ The steps for this demo are described here:
     forge script --chain sepolia script/Script.s.sol:ApproveERC20Script --rpc-url <your_rpc_url> --broadcast
     ```
 
-    Tx hash: 0x33096a33f0a3bcbdacead0d1546675ef49ab4af378417916ab078e99bc5ac47d
+    Tx hash: [0x33096a33f0a3bcbdacead0d1546675ef49ab4af378417916ab078e99bc5ac47d](https://sepolia.etherscan.io/tx/0x33096a33f0a3bcbdacead0d1546675ef49ab4af378417916ab078e99bc5ac47d)
+
+5. An Auction takes place off-chain (Described in the following section)
+6. Auction now has the Bidder and NFT Owner signatures
+7. NFT Owner or bidder can Settle the Auction on-chain
+
+    Tx hash: [0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b](https://sepolia.etherscan.io/tx/0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b)
+
+8. The NFT is transfered the the Bidder an the ERC20 token is transfered to the NFT Onwer is a single transaction
 
 ### Auction simulation on Sepolia Testnet
 
@@ -272,7 +280,7 @@ The script follows this steps:
 4. The NFT Owner or the Bidder retrieve the auction with their two signatures
 5. The NFT Owner or the Bidder Settle the Auction on-chain
 
-    Tx hash: 0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b
+    Tx hash: [0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b](https://sepolia.etherscan.io/tx/0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b)
 
 6. The NFT is transfered the the Bidder an the ERC20 token is transfered to the NFT Onwer is a single transaction
 
