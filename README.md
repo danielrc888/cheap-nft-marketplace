@@ -102,6 +102,78 @@ The following tests are covered:
 - test invalid signature
 - test bid amount less than min price
 
+## Project setup
+
+Note: This project uses node version 22.11.0 and foundry
+
+### Prerequisites
+
+1. Node version 22.11.0 (you can install it using [nvm](https://github.com/nvm-sh/nvm))
+2. Foundry (you can see the installation [docs](https://book.getfoundry.sh/getting-started/installation))
+
+### Steps
+
+1. Clone the repository
+    ```
+    git clone https://github.com/danielrc888/cheap-nft-marketplace.git
+    ```
+
+2. Go to root directory
+
+    ```
+    cd cheap-nft-marketplace/
+    ```
+
+2. Go to `backend` folder 
+    ```
+    $ cd /backend
+    ```
+
+3. Install dependencies
+
+    ```
+    npm install
+    ```
+
+4. Build the module
+
+    ```
+    npm run build
+    ```
+
+5. Run the express server at `http://localhost:3000`
+
+    ```
+    npm start
+    ```
+
+6. Go to `on_chain` folder
+
+    ```
+    cd ../on_chain
+    ```
+
+7. Install foundry dependencies
+
+    ```
+    forge install foundry-rs/forge-std --no-commit
+    forge install OpenZeppelin/openzeppelin-contracts@v5.0.0 --no-commit
+    ```
+
+8. Build contracts
+
+    ```
+    forge build
+    ```
+
+9. Run tests
+
+    ```
+    forge test
+    ```
+
+10. To run deploy scripts you need to create an `.env` file and set the following variables `DEPLOYER_PRIVATE_KEY`, `NFT_OWNER_PRIVATE_KEY`, `BIDDER_PRIVATE_KEY` and `ETHERSCAN_API_KEY` (optionallly if you want to verify your contracts). You can paste the content of `.env.sample` and replace with your values
+
 ## Demo
 
 For the demo we deployed 3 smart contracts on Sepolia Testnet:
@@ -119,11 +191,37 @@ We used 3 wallets
 
 ### Smart Contract Deployments and Wallets Setup on Sepolia Testnet
 
+We used the following address to make the demo
+
+- Deployer: 0x87B06f8ecAeE3378a414aaD45Aa08F8a18003FD4
+
+- Bidder: 0xA359eB575FB4Bf3815bcBf435a16bD5AD51b938a
+
+- NFT Owner: 0x3BE0cA6E3c28Ff03EF63AAE512FE0B57B62ab34D
+
+And this contracts were deployed resulted from demo
+
+- Marketplace: 0xD55b5f702aE1DF6a4991D11e42238e5577BB97df 
+
+- ERC20 Token: 0xe51EFaD079B7c75Bd30210d21Fb286ca4556796E
+
+- ERC721 Token: 0xB00569a4817D84FBE713e72bb665b560f29a18F6
+
+
+The steps for this demo are described here:
+
 1. Deploy the 3 smart contract using following the script:
 
     ```
     forge script --chain sepolia script/Script.s.sol:DeployScript --rpc-url <your_rpc_url> --broadcast  --verify -vvvv
     ```
+
+    Marketplace deploy tx hash: 0xe2db8bcd42cb3ea5cf9b0278f730c7ca36109b2e8487d3391d3eecee3bd5e1c7
+
+    ERC20 token deploy tx hash: 0xdd0a230837256d5f522fca96c9850c6f97e1815eaa72b727b1399ec39269a9ba
+
+    NFT deploy tx hash: 0x493e8023574bc3841584b36ad8bebe648369009c44f203241196858b9bd0eccd
+
 
 2. Mint an NFT to the NFT Owner
 
@@ -131,11 +229,15 @@ We used 3 wallets
     forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
 
+    Tx hash: 0xe36fa6c5e8d412ca3f5d9cde917fdff95e7c03952d2ecc5f61af5f85843616b7
+
 3. Transfer ERC20 to the bidder
 
     ```
     forge script --chain sepolia script/Script.s.sol:TransferNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
+
+    Tx hash: 0x9f0698615bc52198738a90355b8af33fb686b4eadb0aa49182557995c5ccd0db
 
 3. NFT Owner approves all NFT's to the Marketplace
 
@@ -143,29 +245,44 @@ We used 3 wallets
     forge script --chain sepolia script/Script.s.sol:ApproveNFTScript --rpc-url <your_rpc_url> --broadcast
     ```
 
+    Tx hash: 0x89f6af1dcf0a9544cc13a6128a445de85304bcd2f99a9c73c0c4a013011ab93e
+
 4. Bidder approves ERC20 tokens to the Marketplace
 
     ```
     forge script --chain sepolia script/Script.s.sol:ApproveERC20Script --rpc-url <your_rpc_url> --broadcast
     ```
 
+    Tx hash: 0x33096a33f0a3bcbdacead0d1546675ef49ab4af378417916ab078e99bc5ac47d
+
 ### Auction simulation on Sepolia Testnet
 
-Run the script located in `backend/src/scripts/simulateAuction.ts`
+Note: You need to setup your own `NFT Owner wallet`, `Bidder wallet` and `provider`
 
-Considerations:
-- You need to setup your own NFT Owner wallet, Bidder wallet and provider
 
+1. Run the express server
+
+    ```
+    npm start
+    ```
+
+1. Run the script located in `backend/src/scripts/simulateAuction.ts`
+
+    ```
+    node dist/scripts/simulateAuction.ts
+    ```
+
+The script follows this steps:
 
 1. NFT Owner create an auction
 2. A Bidder place a bid for the auction
 3. NFT Owner approve the bid
 4. The NFT Owner or the Bidder retrieve the auction with their two signatures
 5. The NFT Owner or the Bidder Settle the Auction on-chain
+
+    Tx hash: 0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b
+
 6. The NFT is transfered the the Bidder an the ERC20 token is transfered to the NFT Onwer is a single transaction
-
-You can check how the `SettleAuction` works in this [transaction](https://sepolia.etherscan.io/tx/0x6f65c60963e1e81999bc2ac376b2639b069ece108251fe6c6bd71aebe71c7a0b)
-
 
 
 ## Future Actions
