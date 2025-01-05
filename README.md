@@ -176,19 +176,6 @@ Note: This project uses node version 22.11.0 and foundry
 
 ## Demo
 
-For the demo we deployed 3 smart contracts on Sepolia Testnet:
-
-- A simple ERC20 token contract
-- A simple ERC721 token contract
-- The Marketplace contract
-
-We used 3 wallets
-
-- The Marketplace Deployer
-- The NFT Owner
-- The Bidder
-
-
 ### Smart Contract Deployments and Wallets Setup on Sepolia Testnet
 
 We used the following address to make the demo
@@ -257,16 +244,21 @@ The steps for this demo are described here:
 
 ### Auction simulation on Sepolia Testnet
 
-Note: You need to setup your own `NFT Owner wallet`, `Bidder wallet` and `provider`
+1. Setup the following variables insider the `src/scripts/simulateAuction.ts` file: `provider`, `nftOwnerPrivateKey`, `bidderPrivateKey` and `erc20Address`
 
+2. Build the project
 
-1. Run the express server
+    ```
+    npm run build
+    ```
+
+3. Run the express server
 
     ```
     npm start
     ```
 
-1. Run the script located in `backend/src/scripts/simulateAuction.ts`
+4. Run the script located in `backend/src/scripts/simulateAuction.ts`
 
     ```
     node dist/scripts/simulateAuction.ts
