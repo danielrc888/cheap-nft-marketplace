@@ -29,7 +29,52 @@ We implemented two components: a) backend (off-chain system) and b) smart contra
 
 ### Off Chain System
 
-It is implemented using express.js, some endpoints are implemented
+#### Design
+
+The needed attributes for an auction to be settled are:
+
+```
+{
+    "nftAddress": <string>,
+    "nftTokenId": <number>,
+    "owner": <string>,
+    "minPrice": <number>,
+    "erc20Address": <string>,
+}
+```
+
+NFT Owner and bidder sign this using the `solidityPackedKeccak256` function in `ethers.js` library
+
+```
+const auctionHash = ethers.solidityPackedKeccak256(
+    ["address", "address", "uint256", "uint256", "address", "address", "uint256"],
+    [
+        nftAddress,  // nft address
+        nftOwner,  // nftOwner address
+        nftTokenId,  // nftTokenId
+        minPrice,  // minPrice
+        erc20Address,  // ERC20 token address
+        bidder,  // bidder address
+        bidAmount  // bidAmount
+    ]
+);
+const auctionHashBytes = ethers.toBeArray(auctionHash)
+const bidderSignature = await bidderWallet.signingKey.sign(auctionHashBytes).serialized;
+```
+
+Then, the off-chain system can verify the signature of the owner and the bidder with the `recoverAddress` function
+
+```
+export const verifySignature = (hash: Uint8Array | string, signature: string, signerAddress: string): boolean => {
+    // Recover the address from the signature and compare it to the signer address
+    const recoveredAddress = ethers.recoverAddress(hash, signature);
+    return recoveredAddress.toLowerCase() === signerAddress.toLowerCase();
+};
+```
+
+#### Endpoints
+
+The following endpoints are implemented using `express.js`
 
 - `GET  /auction/list`
 
