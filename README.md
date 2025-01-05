@@ -65,10 +65,14 @@ const bidderSignature = await bidderWallet.signingKey.sign(auctionHashBytes).ser
 Then, the off-chain system can verify the signature of the owner and the bidder with the `recoverAddress` function
 
 ```
-export const verifySignature = (hash: Uint8Array | string, signature: string, signerAddress: string): boolean => {
-    // Recover the address from the signature and compare it to the signer address
-    const recoveredAddress = ethers.recoverAddress(hash, signature);
-    return recoveredAddress.toLowerCase() === signerAddress.toLowerCase();
+export const verifySignature = (
+  hash: Uint8Array | string,
+  signature: string,
+  signerAddress: string,
+): boolean => {
+  // Recover the address from the signature and compare it to the signer address
+  const recoveredAddress = ethers.recoverAddress(hash, signature);
+  return recoveredAddress.toLowerCase() === signerAddress.toLowerCase();
 };
 ```
 
